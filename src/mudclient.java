@@ -762,16 +762,15 @@ public class mudclient extends GameConnection {
         if (audioPlayer == null)
             return;
         if (!optionSoundDisabled)
+            // TODO dump this to test our PCM player too
             audioPlayer.writeStream(soundData, Utility.getDataFileOffset(s + ".pcm", soundData), Utility.getDataFileLength(s + ".pcm", soundData));
     }
 
     private void drawDialogReportAbuse() {
-        int dialogX = gameWidth / 2 - 400 / 2;
-        int dialogY = gameHeight / 2 - 290 / 2;
         reportAbuseOffence = 0;
         int y = 135;
         for (int i = 0; i < 12; i++) {
-            if (super.mouseX > dialogX + 66 && super.mouseX < dialogX + 446 && super.mouseY >= dialogY + y - 12 && super.mouseY < dialogY + y + 3)
+            if (super.mouseX > 66 && super.mouseX < 446 && super.mouseY >= y - 12 && super.mouseY < y + 3)
                 reportAbuseOffence = i + 1;
             y += 14;
         }
@@ -786,131 +785,131 @@ public class mudclient extends GameConnection {
         y += 15;
         if (mouseButtonClick != 0) {
             mouseButtonClick = 0;
-            if (super.mouseX < dialogX + 56 || super.mouseY < dialogX + 35 || super.mouseX > dialogY + 456 || super.mouseY > dialogY + 325) {
+            if (super.mouseX < 56 || super.mouseY < 35 || super.mouseX > 456 || super.mouseY > 325) {
                 showDialogReportAbuseStep = 0;
                 return;
             }
-            if (super.mouseX > dialogX + 66 && super.mouseX < dialogX + 446 && super.mouseY >= dialogY + y - 15 && super.mouseY < dialogY + y + 5) {
+            if (super.mouseX > 66 && super.mouseX < 446 && super.mouseY >= y - 15 && super.mouseY < y + 5) {
                 showDialogReportAbuseStep = 0;
                 return;
             }
         }
-        surface.drawBox(dialogX + 56, dialogY + 35, 400, 290, 0);
-        surface.drawBoxEdge(dialogX + 56, dialogY + 35, 400, 290, 0xffffff);
+        surface.drawBox(56, 35, 400, 290, 0);
+        surface.drawBoxEdge(56, 35, 400, 290, 0xffffff);
         y = 50;
-        surface.drawStringCenter("This form is for reporting players who are breaking our rules", dialogX + 256, dialogY + y, 1, 0xffffff);
+        surface.drawStringCenter("This form is for reporting players who are breaking our rules", 256, y, 1, 0xffffff);
         y += 15;
-        surface.drawStringCenter("Using it sends a snapshot of the last 60 secs of activity to us", dialogX + 256, dialogY + y, 1, 0xffffff);
+        surface.drawStringCenter("Using it sends a snapshot of the last 60 secs of activity to us", 256, y, 1, 0xffffff);
         y += 15;
-        surface.drawStringCenter("If you misuse this form, you will be banned.", dialogX + 256, dialogY + y, 1, 0xff8000);
+        surface.drawStringCenter("If you misuse this form, you will be banned.", 256, y, 1, 0xff8000);
         y += 15;
         y += 10;
-        surface.drawStringCenter("First indicate which of our 12 rules is being broken. For a detailed", dialogX + 256, dialogY + y, 1, 0xffff00);
+        surface.drawStringCenter("First indicate which of our 12 rules is being broken. For a detailed", 256, y, 1, 0xffff00);
         y += 15;
-        surface.drawStringCenter("explanation of each rule please read the manual on our website.", dialogX + 256, dialogY + y, 1, 0xffff00);
+        surface.drawStringCenter("explanation of each rule please read the manual on our website.", 256, y, 1, 0xffff00);
         y += 15;
         int textColour;
         if (reportAbuseOffence == 1) {
-            surface.drawBoxEdge(dialogX + 66, dialogY + y - 12, 380, 15, 0xffffff);
+            surface.drawBoxEdge(66, y - 12, 380, 15, 0xffffff);
             textColour = 0xff8000;
         } else {
             textColour = 0xffffff;
         }
-        surface.drawStringCenter("1: Offensive language", dialogX + 256, dialogY + y, 1, textColour);
+        surface.drawStringCenter("1: Offensive language", 256, y, 1, textColour);
         y += 14;
         if (reportAbuseOffence == 2) {
-            surface.drawBoxEdge(dialogX + 66, dialogY + y - 12, 380, 15, 0xffffff);
+            surface.drawBoxEdge(66, y - 12, 380, 15, 0xffffff);
             textColour = 0xff8000;
         } else {
             textColour = 0xffffff;
         }
-        surface.drawStringCenter("2: Item scamming", dialogX + 256, dialogY + y, 1, textColour);
+        surface.drawStringCenter("2: Item scamming", 256, y, 1, textColour);
         y += 14;
         if (reportAbuseOffence == 3) {
-            surface.drawBoxEdge(dialogX + 66, dialogY + y - 12, 380, 15, 0xffffff);
+            surface.drawBoxEdge(66, y - 12, 380, 15, 0xffffff);
             textColour = 0xff8000;
         } else {
             textColour = 0xffffff;
         }
-        surface.drawStringCenter("3: Password scamming", dialogX + 256, dialogY + y, 1, textColour);
+        surface.drawStringCenter("3: Password scamming", 256, y, 1, textColour);
         y += 14;
         if (reportAbuseOffence == 4) {
-            surface.drawBoxEdge(dialogX + 66, dialogY + y - 12, 380, 15, 0xffffff);
+            surface.drawBoxEdge(66, y - 12, 380, 15, 0xffffff);
             textColour = 0xff8000;
         } else {
             textColour = 0xffffff;
         }
-        surface.drawStringCenter("4: Bug abuse", dialogX + 256, dialogY + y, 1, textColour);
+        surface.drawStringCenter("4: Bug abuse", 256, y, 1, textColour);
         y += 14;
         if (reportAbuseOffence == 5) {
-            surface.drawBoxEdge(dialogX + 66, dialogY + y - 12, 380, 15, 0xffffff);
+            surface.drawBoxEdge(66, y - 12, 380, 15, 0xffffff);
             textColour = 0xff8000;
         } else {
             textColour = 0xffffff;
         }
-        surface.drawStringCenter("5: Jagex Staff impersonation", dialogX + 256, dialogY + y, 1, textColour);
+        surface.drawStringCenter("5: Jagex Staff impersonation", 256, y, 1, textColour);
         y += 14;
         if (reportAbuseOffence == 6) {
-            surface.drawBoxEdge(dialogX + 66, dialogY + y - 12, 380, 15, 0xffffff);
+            surface.drawBoxEdge(66, y - 12, 380, 15, 0xffffff);
             textColour = 0xff8000;
         } else {
             textColour = 0xffffff;
         }
-        surface.drawStringCenter("6: Account sharing/trading", dialogX + 256, dialogY + y, 1, textColour);
+        surface.drawStringCenter("6: Account sharing/trading", 256, y, 1, textColour);
         y += 14;
         if (reportAbuseOffence == 7) {
-            surface.drawBoxEdge(dialogX + 66, dialogY + y - 12, 380, 15, 0xffffff);
+            surface.drawBoxEdge(66, y - 12, 380, 15, 0xffffff);
             textColour = 0xff8000;
         } else {
             textColour = 0xffffff;
         }
-        surface.drawStringCenter("7: Macroing", dialogX + 256, dialogY + y, 1, textColour);
+        surface.drawStringCenter("7: Macroing", 256, y, 1, textColour);
         y += 14;
         if (reportAbuseOffence == 8) {
-            surface.drawBoxEdge(dialogX + 66, dialogY + y - 12, 380, 15, 0xffffff);
+            surface.drawBoxEdge(66, y - 12, 380, 15, 0xffffff);
             textColour = 0xff8000;
         } else {
             textColour = 0xffffff;
         }
-        surface.drawStringCenter("8: Mutiple logging in", dialogX + 256, dialogY + y, 1, textColour);
+        surface.drawStringCenter("8: Mutiple logging in", 256, y, 1, textColour);
         y += 14;
         if (reportAbuseOffence == 9) {
-            surface.drawBoxEdge(dialogX + 66, dialogY + y - 12, 380, 15, 0xffffff);
+            surface.drawBoxEdge(66, y - 12, 380, 15, 0xffffff);
             textColour = 0xff8000;
         } else {
             textColour = 0xffffff;
         }
-        surface.drawStringCenter("9: Encouraging others to break rules", dialogX + 256, dialogY + y, 1, textColour);
+        surface.drawStringCenter("9: Encouraging others to break rules", 256, y, 1, textColour);
         y += 14;
         if (reportAbuseOffence == 10) {
-            surface.drawBoxEdge(dialogX + 66, dialogY + y - 12, 380, 15, 0xffffff);
+            surface.drawBoxEdge(66, y - 12, 380, 15, 0xffffff);
             textColour = 0xff8000;
         } else {
             textColour = 0xffffff;
         }
-        surface.drawStringCenter("10: Misuse of customer support", dialogX + 256, dialogY + y, 1, textColour);
+        surface.drawStringCenter("10: Misuse of customer support", 256, y, 1, textColour);
         y += 14;
         if (reportAbuseOffence == 11) {
-            surface.drawBoxEdge(dialogX + 66, dialogY + y - 12, 380, 15, 0xffffff);
+            surface.drawBoxEdge(66, y - 12, 380, 15, 0xffffff);
             textColour = 0xff8000;
         } else {
             textColour = 0xffffff;
         }
-        surface.drawStringCenter("11: Advertising / website", dialogX + 256, dialogY + y, 1, textColour);
+        surface.drawStringCenter("11: Advertising / website", 256, y, 1, textColour);
         y += 14;
         if (reportAbuseOffence == 12) {
-            surface.drawBoxEdge(dialogX + 66, dialogY + y - 12, 380, 15, 0xffffff);
+            surface.drawBoxEdge(66, y - 12, 380, 15, 0xffffff);
             textColour = 0xff8000;
         } else {
             textColour = 0xffffff;
         }
-        surface.drawStringCenter("12: Real world item trading", dialogX + 256, dialogY + y, 1, textColour);
+        surface.drawStringCenter("12: Real world item trading", 256, y, 1, textColour);
         y += 14;
         y += 15;
         textColour = 0xffffff;
-        if (super.mouseX > dialogX + 196 && super.mouseX < dialogX + 316 && super.mouseY > dialogY + y - 15 && super.mouseY < dialogY + y + 5)
+        if (super.mouseX > 196 && super.mouseX < 316 && super.mouseY > y - 15 && super.mouseY < y + 5)
             textColour = 0xffff00;
-        surface.drawStringCenter("Click here to cancel", dialogX + 256, dialogY + y, 1, textColour);
+        surface.drawStringCenter("Click here to cancel", 256, y, 1, textColour);
     }
 
     private boolean walkToActionSource(int startX, int startY, int x1, int y1, int x2, int y2, boolean checkObjects, boolean walkToAction) {
@@ -4908,7 +4907,6 @@ public class mudclient extends GameConnection {
     }
 
     private void drawDialogReportAbuseInput() {
-        int dialogX = 196;
         if (super.inputTextFinal.length() > 0) {
             String s = super.inputTextFinal.trim();
             super.inputTextCurrent = "";

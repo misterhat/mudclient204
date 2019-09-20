@@ -157,9 +157,6 @@ public class GameShell extends Applet
                 inputPmCurrent += chr;
             }
         }
-        if (foundText && inputTextCurrent.length() < 20) {
-            inputTextCurrent += chr;
-        }
         if (code == KeyEvent.VK_BACK_SPACE) {
             if (inputTextCurrent.length() > 0) {
                 inputTextCurrent = inputTextCurrent.substring(0, inputTextCurrent.length() - 1);
@@ -384,6 +381,7 @@ public class GameShell extends Applet
         byte buff[] = readDataFile("jagex.jag", "Jagex library", 0);
         if (buff != null) {
             byte logo[] = Utility.loadData("logo.tga", 0, buff);
+            // TODO dump this logo and see if tga loader loads it
             imageLogo = createImage(logo);
         }
         buff = readDataFile("fonts" + Version.FONTS + ".jag", "Game fonts", 5);
