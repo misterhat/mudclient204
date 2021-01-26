@@ -1,3 +1,6 @@
+# NOTE
+This project has been archived. See https://github.com/2003scape/mudclient204
+
 # mudclient204
 
 a mostly-refactored 204 revision of jagex's 
